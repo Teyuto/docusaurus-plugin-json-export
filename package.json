@@ -1,0 +1,33 @@
+{
+    "name": "@teyuto/docusaurus-plugin-json-export",
+    "version": "0.2.1",
+    "description": "A Docusaurus plugin to export content as JSON files",
+    "main": "src/index.js",
+    "keywords": [
+      "docusaurus",
+      "docusaurus-plugin",
+      "json",
+      "export"
+    ],
+    "author": "Teyuto",
+    "license": "MIT",
+    "peerDependencies": {
+      "@docusaurus/core": "^2.0.0 || ^3.0.0"
+    },
+    "dependencies": {
+      "js-yaml": "^4.1.0"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Teyuto/docusaurus-plugin-json-export.git"
+    },
+    "private": false,
+    "publishConfig": {
+      "access": "public",
+      "registry": "https://registry.npmjs.org/"
+    },
+    "bugs": {
+      "url": "https://github.com/Teyuto/docusaurus-plugin-json-export/issues"
+    },
+    "homepage": "https://github.com/Teyuto/docusaurus-plugin-json-export#readme"
+  }
