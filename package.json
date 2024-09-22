@@ -1,6 +1,6 @@
 {
     "name": "@teyuto/docusaurus-plugin-json-export",
-    "version": "0.2.1",
+    "version": "0.8.0",
     "description": "A Docusaurus plugin to export content as JSON files",
     "main": "src/index.js",
     "keywords": [
