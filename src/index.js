@@ -13,10 +13,13 @@ function parseFrontMatter(content) {
     const [key, ...value] = line.split(':');
     if (key && value.length) {
       const trimmedKey = key.trim();
-      const trimmedValue = value.join(':').trim();
+      let trimmedValue = value.join(':').trim();
+      
+      trimmedValue = trimmedValue.replace(/^["'](.*)["']$/, '$1');
+
       if (trimmedKey === 'tags') {
         try {
-          frontMatter[trimmedKey] = JSON.parse(trimmedValue);
+          frontMatter[trimmedKey] = JSON.parse(trimmedValue).map(tag => tag.replace(/^["'](.*)["']$/, '$1'));
         } catch (e) {
           console.error(`Error parsing tags: ${trimmedValue}`);
           frontMatter[trimmedKey] = [];
