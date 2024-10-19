@@ -217,11 +217,21 @@ module.exports = function (context, options) {
 
           if (excludedTags.some(tag => frontMatter.tags.includes(tag))) continue;
 
-          const outputFilePath = path.join(jsonOutputDir, `${exportPath}/${slug}.json`);
-          const dirPath = path.dirname(outputFilePath);
-          await fs.mkdir(dirPath, { recursive: true });
-          await fs.writeFile(outputFilePath, JSON.stringify(fullBlogData, null, minifyOutput ? 0 : 2));
-          console.log(`Created ${outputFilePath}`);
+          // Write JSON file
+          const jsonOutputPath = path.join(exportOutputDir, `${exportPath}/${slug}.json`);
+          const jsonDirPath = path.dirname(jsonOutputPath);
+          await fs.mkdir(jsonDirPath, { recursive: true });
+          await fs.writeFile(jsonOutputPath, JSON.stringify(fullBlogData, null, minifyOutput ? 0 : 2));
+          console.log(`Created JSON file: ${jsonOutputPath}`);
+
+          // Write Markdown file
+          const mdOutputPath = path.join(exportOutputDir, `${exportPath}/${slug}.md`);
+          const mdDirPath = path.dirname(mdOutputPath);
+          await fs.mkdir(mdDirPath, { recursive: true });
+          const frontMatterString = yaml.dump(frontMatter);
+          const mdOutput = `---\n${frontMatterString}---\n\n${fullBlogData.content_md}`;
+          await fs.writeFile(mdOutputPath, mdOutput);
+          console.log(`Created Markdown file: ${mdOutputPath}`);
 
           contentList.push(blogData);
 
