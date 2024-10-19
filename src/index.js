@@ -224,15 +224,6 @@ module.exports = function (context, options) {
           await fs.writeFile(jsonOutputPath, JSON.stringify(fullBlogData, null, minifyOutput ? 0 : 2));
           console.log(`Created JSON file: ${jsonOutputPath}`);
 
-          // Write Markdown file
-          const mdOutputPath = path.join(exportOutputDir, `${exportPath}/${slug}.md`);
-          const mdDirPath = path.dirname(mdOutputPath);
-          await fs.mkdir(mdDirPath, { recursive: true });
-          const frontMatterString = yaml.dump(frontMatter);
-          const mdOutput = `---\n${frontMatterString}---\n\n${fullBlogData.content_md}`;
-          await fs.writeFile(mdOutputPath, mdOutput);
-          console.log(`Created Markdown file: ${mdOutputPath}`);
-
           contentList.push(blogData);
 
           frontMatter.tags.forEach(tag => {
